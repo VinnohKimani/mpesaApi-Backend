@@ -1,0 +1,29 @@
+from flask import Flask
+from flask_restful import Api
+from flask_migrate import Migrate
+from models import db
+from Resources.payment import (
+    PaymentResource,
+    PaymentCallbackResource,
+    CheckPaymentResource,
+)
+
+
+app = Flask(__name__)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mpesaApi.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+app.config["SQLALCHEMY_ECHO"] = True
+app.config["BUNDLE_ERRORS"] = True
+
+# setting up flask-restful
+api = Api(app)
+
+migrate = Migrate(app, db)
+# Linking our db to our flask app
+db.init_app(app)
+
+api.add_resource(PaymentResource, "/payments")
+api.add_resource(PaymentCallbackResource, "/payments/callback")
+api.add_resource(CheckPaymentResource, "/payments/check/<string:checkout_request_id>")

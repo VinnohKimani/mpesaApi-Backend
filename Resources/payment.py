@@ -27,6 +27,19 @@ class PaymentResource(Resource):
 
         return {"message": "Response Okay", "data": mpesa_response}
 
+    def get(self):
+        payments = Payment.query.all()
+        result = [
+            {
+                "phone_number": p.phone_number,
+                "amount": p.amount,
+                "transaction_code": p.transaction_code,
+                "transaction_date": p.transaction_date.isoformat(),
+            }
+            for p in payments
+        ]
+        return result, 200
+
 
 class CheckPaymentResource(Resource):
     def get(self, checkout_request_id):

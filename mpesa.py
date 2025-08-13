@@ -62,7 +62,7 @@ class Mpesa:
             "PartyA": phone,
             "PartyB": self.business_short_code,
             "PhoneNumber": phone,
-            "CallBackURL": "https://11d88585c5e2.ngrok-free.app/payments/callback",
+            "CallBackURL": "https://517c60e3498b.ngrok-free.app/payments/callback",
             "AccountReference": "Test",
             "TransactionDesc": desc,
         }

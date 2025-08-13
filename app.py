@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_migrate import Migrate
+from flask_cors import CORS
 from models import db
 from Resources.payment import (
     PaymentResource,
@@ -10,6 +11,7 @@ from Resources.payment import (
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mpesaApi.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

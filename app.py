@@ -14,9 +14,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+# CORS(
+#     app,
+#     resources={r"/*": {"origins": "https://mashcollectionmpesapayment.netlify.app"}},
+# )
 CORS(
     app,
     resources={r"/*": {"origins": "https://mashcollectionmpesapayment.netlify.app"}},
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "OPTIONS"],
 )
 
 

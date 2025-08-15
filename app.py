@@ -9,12 +9,14 @@ from Resources.payment import (
     PaymentCallbackResource,
     CheckPaymentResource,
 )
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.config["SQLALCHEMY_DATABASE_URL"] = os.environ.get("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.config["SQLALCHEMY_ECHO"] = True

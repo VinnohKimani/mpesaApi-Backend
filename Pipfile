@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 requests = "*"
 sqlalchemy-serializer = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 
